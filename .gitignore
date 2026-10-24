@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Build artifacts
+dist/
+build/
+*/dist/
+*/build/
+
+# Environment variables
+.env
+.env.*
+server/.env
+client/.env
+!.env.example
+!server/.env.example
+
+# Uploads directory (keep directory, ignore uploaded test PDFs)
+uploads/*
+!uploads/.gitkeep
+
+# Local runner & temporary scripts
+powershell.cmd
+*/powershell.cmd
+
+# System generated and temporary files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
