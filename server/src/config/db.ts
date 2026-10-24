@@ -8,12 +8,17 @@ import { ENV } from './env';
 function getDatabaseConfig() {
   try {
     const parsed = new URL(ENV.DATABASE_URL);
+    const sslParam = parsed.searchParams.get('ssl');
+    const sslMode = parsed.searchParams.get('ssl-mode');
+    const useSsl = sslParam === 'true' || sslMode === 'REQUIRED' || process.env.DB_SSL === 'true';
+
     return {
       host: parsed.hostname || '127.0.0.1',
       port: parsed.port ? parseInt(parsed.port, 10) : 3306,
       user: decodeURIComponent(parsed.username || 'root'),
       password: decodeURIComponent(parsed.password || ''),
       database: parsed.pathname.replace(/^\//, '') || 'exam_monitoring_db',
+      ssl: useSsl ? { rejectUnauthorized: false } : undefined,
     };
   } catch {
     return {
@@ -22,6 +27,7 @@ function getDatabaseConfig() {
       user: 'root',
       password: '',
       database: 'exam_monitoring_db',
+      ssl: undefined,
     };
   }
 }
@@ -30,7 +36,7 @@ const config = getDatabaseConfig();
 
 /**
  * Shared MySQL Connection Pool
- * Configured with sane connection limits and keep-alive for local XAMPP / MariaDB.
+ * Configured with sane connection limits and keep-alive for local XAMPP / MariaDB or Cloud MySQL.
  */
 export const db: Pool = mysql.createPool({
   host: config.host,
@@ -38,6 +44,7 @@ export const db: Pool = mysql.createPool({
   user: config.user,
   password: config.password,
   database: config.database,
+  ssl: config.ssl,
   waitForConnections: true,
   connectionLimit: 15,
   queueLimit: 0,
