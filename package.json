@@ -2,6 +2,7 @@
   "name": "exam-results-monitoring-system",
   "version": "1.0.0",
   "description": "Examination Results Monitoring System - Department of Computing, Faculty of Applied Sciences, Rajarata University of Sri Lanka",
+  "author": "Syntax Squad",
   "scripts": {
     "install:all": "npm --prefix server install && npm --prefix client install",
     "setup:env": "node -e \"const fs = require('fs'); if (!fs.existsSync('server/.env')) { fs.copyFileSync('server/.env.example', 'server/.env'); console.log('Created server/.env from template.'); } else { console.log('server/.env already exists.'); }\"",

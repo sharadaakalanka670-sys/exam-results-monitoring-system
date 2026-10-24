@@ -596,6 +596,11 @@ export const App: React.FC = () => {
               </div>
             )}
           </div>
+
+          {/* Team Branding */}
+          <p className="mt-4 text-center text-xs text-slate-400">
+            Engineered by <span className="font-semibold text-slate-200">Syntax Squad</span> • Department of Computing, RUSL
+          </p>
         </div>
       </div>
     );

@@ -1,5 +1,8 @@
 # RUSL Examination Results Monitoring System
 
+**Developed by Team Syntax Squad**  
+*Department of Computing, Faculty of Applied Sciences, Rajarata University of Sri Lanka (RUSL)*
+
 > Web-based examination tracking and workflow monitoring system for the **Department of Computing, Faculty of Applied Sciences, Rajarata University of Sri Lanka (RUSL)**.
 > Ensures strict adherence to examination bylaws, seniority rules for second examiners, physical script handover verification via cryptographic OTPs, courier tracking, deadline enforcement, and multi-stage marksheet approvals.
 
@@ -194,6 +197,6 @@ exam-results-monitoring-system/
 
 ---
 
-## 📄 License & Attribution
+## 👥 Development Team & Attribution
 
-Developed for the **Department of Computing, Faculty of Applied Sciences, Rajarata University of Sri Lanka (RUSL)**. All rights reserved.
+Developed with pride by **Syntax Squad** for the **Department of Computing, Faculty of Applied Sciences, Rajarata University of Sri Lanka (RUSL)**. All rights reserved.

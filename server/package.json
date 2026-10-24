@@ -2,6 +2,7 @@
   "name": "exam-monitoring-server",
   "version": "1.0.0",
   "description": "Backend API for Examination Results Monitoring System - RUSL",
+  "author": "Syntax Squad",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

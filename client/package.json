@@ -2,6 +2,7 @@
   "name": "exam-monitoring-client",
   "private": true,
   "version": "1.0.0",
+  "author": "Syntax Squad",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -408,6 +408,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <LogOut className="w-4 h-4 text-slate-400 group-hover:text-rose-300" />
             <span>Sign Out</span>
           </button>
+
+          {/* Team Branding */}
+          <div className="mt-2 text-center text-[10px] text-slate-500 font-medium">
+            Developed by <span className="text-slate-400 font-semibold">Syntax Squad</span>
+          </div>
         </div>
       </aside>
     </>
