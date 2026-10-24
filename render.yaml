@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: exam-results-monitoring-system
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        value: rusl_exam_monitoring_super_secret_jwt_key_2026
+      - key: DATABASE_URL
+        sync: false

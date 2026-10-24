@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Examination Results Monitoring System - Department of Computing, Faculty of Applied Sciences, Rajarata University of Sri Lanka",
   "author": "Syntax Squad",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "postinstall": "npm --prefix server install && npm --prefix client install",
     "install:all": "npm --prefix server install && npm --prefix client install",
