@@ -6,6 +6,17 @@ import { ENV } from './env';
  * Supports standard format: mysql://user:password@host:port/database
  */
 function getDatabaseConfig() {
+  if (process.env.MYSQLHOST) {
+    return {
+      host: process.env.MYSQLHOST,
+      port: parseInt(process.env.MYSQLPORT || '3306', 10),
+      user: process.env.MYSQLUSER || 'root',
+      password: process.env.MYSQLPASSWORD || '',
+      database: process.env.MYSQLDATABASE || 'railway',
+      ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
+    };
+  }
+
   try {
     const parsed = new URL(ENV.DATABASE_URL);
     const sslParam = parsed.searchParams.get('ssl');
@@ -50,6 +61,7 @@ export const db: Pool = mysql.createPool({
   queueLimit: 0,
   decimalNumbers: true,
   dateStrings: false,
+  multipleStatements: true,
 });
 
 /**
