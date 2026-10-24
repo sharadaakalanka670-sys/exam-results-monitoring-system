@@ -28,7 +28,7 @@
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/exam-results-monitoring-system.git
+git clone https://github.com/sharadaakalanka670-sys/exam-results-monitoring-system.git
 cd exam-results-monitoring-system
 ```
 
