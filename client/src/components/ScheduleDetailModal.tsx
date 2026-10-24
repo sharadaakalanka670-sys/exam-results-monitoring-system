@@ -1234,51 +1234,69 @@ export const ScheduleDetailModal: React.FC<Props> = ({ schedule: initialSchedule
                     </div>
                   </div>
 
-                  {/* Extension Request Form */}
-                  <div className="p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-3">
-                    <span className="text-xs font-bold text-slate-800 uppercase tracking-wide block">
-                      Request Deadline Extension
-                    </span>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                      <div>
-                        <label className="text-[11px] text-slate-600 block mb-1">Target Phase:</label>
-                        <select
-                          value={extensionPhase}
-                          onChange={(e: any) => setExtensionPhase(e.target.value)}
-                          className="w-full px-3 py-1.5 text-xs border rounded-lg bg-white"
-                        >
-                          <option value="FIRST_MARKING">1st Marking (3-Month)</option>
-                          <option value="SECOND_MARKING">2nd Marking (1-Month)</option>
-                        </select>
+                  {/* Extension Request Section (Assigned Examiners Only) */}
+                  {(isFirstExaminer || isSecondExaminer) && !isLocked && (
+                    <div className="p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-slate-800 uppercase tracking-wide block">
+                          Request Deadline Extension
+                        </span>
+                        <span className="text-[11px] text-slate-500 font-medium">
+                          {isFirstExaminer ? 'First Examiner (1st Marking)' : 'Second Examiner (2nd Marking)'}
+                        </span>
                       </div>
-                      <div>
-                        <label className="text-[11px] text-slate-600 block mb-1">Requested New Due Date:</label>
-                        <input
-                          type="date"
-                          value={extensionDateInput}
-                          onChange={(e) => setExtensionDateInput(e.target.value)}
-                          className="w-full px-3 py-1.5 text-xs border rounded-lg bg-white"
-                        />
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                          <label className="text-[11px] text-slate-600 block mb-1">Target Phase:</label>
+                          <select
+                            value={isFirstExaminer && !isSecondExaminer ? 'FIRST_MARKING' : isSecondExaminer && !isFirstExaminer ? 'SECOND_MARKING' : extensionPhase}
+                            onChange={(e: any) => setExtensionPhase(e.target.value)}
+                            disabled={isFirstExaminer !== isSecondExaminer}
+                            className="w-full px-3 py-1.5 text-xs border rounded-lg bg-white disabled:bg-slate-100 disabled:text-slate-600"
+                          >
+                            {isFirstExaminer && <option value="FIRST_MARKING">1st Marking (3-Month)</option>}
+                            {isSecondExaminer && <option value="SECOND_MARKING">2nd Marking (1-Month)</option>}
+                          </select>
+                        </div>
+                        <div>
+                          <label className="text-[11px] text-slate-600 block mb-1">Requested New Due Date:</label>
+                          <input
+                            type="date"
+                            value={extensionDateInput}
+                            onChange={(e) => setExtensionDateInput(e.target.value)}
+                            className="w-full px-3 py-1.5 text-xs border rounded-lg bg-white"
+                          />
+                        </div>
+                        <div>
+                          <label className="text-[11px] text-slate-600 block mb-1">Mandatory Reason:</label>
+                          <input
+                            type="text"
+                            placeholder="State medical or logistical grounds"
+                            value={extensionReasonInput}
+                            onChange={(e) => setExtensionReasonInput(e.target.value)}
+                            className="w-full px-3 py-1.5 text-xs border rounded-lg bg-white"
+                          />
+                        </div>
                       </div>
-                      <div>
-                        <label className="text-[11px] text-slate-600 block mb-1">Mandatory Reason:</label>
-                        <input
-                          type="text"
-                          placeholder="State medical or logistical grounds"
-                          value={extensionReasonInput}
-                          onChange={(e) => setExtensionReasonInput(e.target.value)}
-                          className="w-full px-3 py-1.5 text-xs border rounded-lg bg-white"
-                        />
+                      <button
+                        onClick={handleRequestExtension}
+                        disabled={loading || !extensionDateInput || !extensionReasonInput.trim()}
+                        className="px-4 py-1.5 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-medium transition disabled:opacity-50"
+                      >
+                        Submit Extension Request to HOD
+                      </button>
+                    </div>
+                  )}
+
+                  {/* For HOD: Notice that examiners must initiate extensions, review is on HOD dashboard */}
+                  {isHod && !isFirstExaminer && !isSecondExaminer && (
+                    <div className="p-3.5 rounded-xl border border-blue-200 bg-blue-50/70 text-xs text-blue-900 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                        <span>Deadline extensions must be requested by the assigned First Examiner or Second Examiner. Review pending requests from your <strong>HOD Dashboard</strong>.</span>
                       </div>
                     </div>
-                    <button
-                      onClick={handleRequestExtension}
-                      disabled={loading || !extensionDateInput || !extensionReasonInput.trim()}
-                      className="px-4 py-1.5 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-medium transition disabled:opacity-50"
-                    >
-                      Submit Extension Request to HOD
-                    </button>
-                  </div>
+                  )}
                 </>
               )}
             </div>

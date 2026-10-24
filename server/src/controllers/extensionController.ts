@@ -25,9 +25,12 @@ export class ExtensionController {
 
       const schedule = await queryOne<any>(
         `SELECT s.id, s.workflow_status AS workflowStatus,
+                s.first_examiner_user_id AS firstExaminerUserId,
+                sep.user_id AS secondExaminerUserId,
                 fm.extended_due_date AS fmExtendedDueDate, fm.original_due_date AS fmOriginalDueDate,
                 sm.extended_due_date AS smExtendedDueDate, sm.original_due_date AS smOriginalDueDate
          FROM exam_schedules s
+         LEFT JOIN examiner_profiles sep ON s.second_examiner_profile_id = sep.id
          LEFT JOIN first_markings fm ON fm.exam_schedule_id = s.id
          LEFT JOIN second_markings sm ON sm.exam_schedule_id = s.id
          WHERE s.id = ?`,
@@ -36,6 +39,23 @@ export class ExtensionController {
 
       if (!schedule) {
         res.status(404).json({ error: 'NOT_FOUND', message: 'Schedule not found' });
+        return;
+      }
+
+      // Regulatory Rule: Extensions must be requested strictly by the assigned examiner for that phase
+      if (phase === ExtensionPhase.FIRST_MARKING && schedule.firstExaminerUserId !== user.id) {
+        res.status(403).json({
+          error: 'FORBIDDEN',
+          message: 'Regulatory Rule: Only the assigned First Examiner can request a deadline extension for 1st Marking.'
+        });
+        return;
+      }
+
+      if (phase === ExtensionPhase.SECOND_MARKING && schedule.secondExaminerUserId !== user.id) {
+        res.status(403).json({
+          error: 'FORBIDDEN',
+          message: 'Regulatory Rule: Only the assigned Second Examiner can request a deadline extension for 2nd Marking.'
+        });
         return;
       }
 
