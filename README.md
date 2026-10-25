@@ -13,8 +13,28 @@
 - **Frontend:** React 18, TypeScript, Vite, Tailwind CSS, Lucide React Icons
 - **Backend:** Node.js, Express, TypeScript, pure MySQL (`mysql2/promise`)
 - **Database:** MySQL / MariaDB (Database: `exam_monitoring_db`)
+- **Authentication:** JWT-based with role-based access control (RBAC)
+- **Email Notifications:** Gmail SMTP integration with per-user configurable settings
 - **Storage:** Local encrypted file storage with SHA-256 integrity checks
+- **Deployment:** Render (via `render.yaml` blueprint)
 - **Testing:** Jest, Supertest (Unit & Integration test suites)
+
+---
+
+## ✨ Key Features
+
+- **Role-Based Dashboards** — Dedicated dashboards for HOD, Lecturers, Second Examiners, AR Office, Clerk, and Dean
+- **Seniority Bylaw Enforcement** — Automatically validates that Second Examiners hold equal or higher seniority rank than First Examiners
+- **6-Digit OTP Script Handover** — Secure cryptographic OTP generation for physical exam script collection and return verification
+- **Courier Tracking** — Record courier dispatch with tracking numbers (e.g., Certis Lanka / Prompt Xpress) and auto-set deadlines
+- **Deadline Management** — 3-calendar-month first marking and 1-calendar-month second marking deadline enforcement with extension request/approval workflow
+- **Multi-Stage Marksheet Approval** — Upload, submit, review, request changes, approve & permanently lock final marksheets
+- **External Examiner Invitations** — Invite and manage external second examiners with formal invitation workflow
+- **Email Notifications** — Auto-customized notification emails via configurable Gmail SMTP per user
+- **Audit Logging** — Complete audit trail of all system actions for institutional integrity
+- **Role Management** — HOD-controlled role assignment, change requests, and approval workflows
+- **Document Security** — Signed URL-based secure document download with integrity verification
+- **Professional Avatars** — Auto-generated professional vector avatars for lecturer profiles
 
 ---
 
@@ -73,6 +93,14 @@ JWT_SECRET="rusl_exam_monitoring_super_secret_jwt_key_2026"
 JWT_EXPIRES_IN="7d"
 STORAGE_DIR="../uploads"
 CLIENT_URL="http://localhost:5173"
+
+# Gmail SMTP Configuration (Optional — OTPs are also logged/displayed in application UI)
+SMTP_HOST="smtp.gmail.com"
+SMTP_PORT=465
+SMTP_SECURE="true"
+SMTP_USER=""
+SMTP_PASS=""
+EMAIL_FROM="RUSL Exam Monitoring <noreply@rusl.ac.lk>"
 ```
 *(If your MySQL root has a password, update `DATABASE_URL="mysql://root:yourpassword@127.0.0.1:3306/exam_monitoring_db"`).*
 
@@ -161,42 +189,150 @@ Follow this quick walkthrough to test all key features and university bylaws:
 
 ---
 
-## 📁 Project Structure & Documentation
+## 🌐 API Endpoints
+
+The backend exposes a comprehensive RESTful API organized into the following modules:
+
+| # | Module | Key Endpoints |
+|---|---|---|
+| 1 | **Authentication** | Login, Register, Forgot/Reset Password, Profile Update |
+| 2 | **Role Management** | List Users/Roles, Create Roles, Request/Approve/Reject Role Changes |
+| 3 | **Course Catalogue** | List Courses, Create Courses, List Course Offerings |
+| 4 | **Exam Schedules** | List, Get, Create Draft, Update Draft, Activate, Cancel |
+| 5 | **Examiners & Invitations** | Get Candidates, Assign Second Examiner, Create/Review/Respond to Invitations |
+| 6 | **First Marking & OTP** | Request/Generate/Verify Collection OTP, Upload Report, Request/Verify Return OTP |
+| 7 | **Second Marking & Courier** | Record Courier Dispatch, Acknowledge Receipt, Upload Report, Confirm AR Receipt |
+| 8 | **Final Marksheet** | Upload, Submit, Request Changes, Approve & Lock, Record Hardcopy |
+| 9 | **Deadline Extensions** | Request Extension, List Extensions, Review Extension |
+| 10 | **Documents** | Secure Signed Download Links |
+| 11 | **Dashboards** | HOD, Lecturer, Second Examiner, AR, Dean role-specific dashboards |
+| 12 | **Audit Logs** | Full system audit trail |
+| 13 | **Email Notifications** | List Emails, SMTP Settings, Test Connection, Send Test Email |
+
+---
+
+## 📁 Project Structure
 
 ```
 exam-results-monitoring-system/
-├── client/                     # React 18 + TypeScript + Vite frontend
+├── client/                         # React 18 + TypeScript + Vite frontend
+│   ├── public/                     # Static assets
 │   ├── src/
-│   │   ├── components/         # Reusable UI components (Modal, Navbar, OTP, etc.)
-│   │   ├── pages/              # Role dashboards, schedules, tracking, reports
-│   │   ├── services/           # Axios API client services
-│   │   └── types/              # TypeScript interface definitions
+│   │   ├── api/
+│   │   │   └── client.ts           # Axios API client configuration
+│   │   ├── assets/
+│   │   │   └── rusl-logo.png       # University branding logo
+│   │   ├── components/
+│   │   │   ├── ArDashboard.tsx          # AR Office dashboard
+│   │   │   ├── AuditLogViewer.tsx       # System audit log viewer
+│   │   │   ├── ClerkDashboard.tsx       # Department Clerk dashboard
+│   │   │   ├── DeanDashboard.tsx        # Faculty Dean dashboard
+│   │   │   ├── EditProfileModal.tsx     # User profile editor modal
+│   │   │   ├── EmailViewerModal.tsx     # Email notification viewer
+│   │   │   ├── GmailSettingsTab.tsx     # Gmail SMTP configuration tab
+│   │   │   ├── HodDashboard.tsx         # HOD dashboard
+│   │   │   ├── LecturerAvatar.tsx       # Professional avatar component
+│   │   │   ├── LecturerDashboard.tsx    # Lecturer / First Examiner dashboard
+│   │   │   ├── Navbar.tsx               # Navigation sidebar
+│   │   │   ├── RoleManagementView.tsx   # Role administration panel
+│   │   │   ├── ScheduleDetailModal.tsx  # Exam schedule detail view
+│   │   │   ├── SchedulesList.tsx        # Exam schedules list view
+│   │   │   ├── SecondExaminerDashboard.tsx  # Second Examiner dashboard
+│   │   │   ├── Sidebar.tsx              # Sidebar navigation
+│   │   │   ├── StatusBadge.tsx          # Status indicator badge
+│   │   │   ├── TopHeader.tsx            # Top header bar
+│   │   │   └── WorkflowTimeline.tsx     # Workflow step timeline
+│   │   ├── utils/
+│   │   │   └── professionalVectors.ts   # Avatar vector generation
+│   │   ├── App.tsx                 # Root application component
+│   │   ├── main.tsx                # Application entry point
+│   │   ├── index.css               # Global styles
+│   │   └── types.ts                # TypeScript type definitions
 │   └── package.json
-├── server/                     # Node.js + Express + TypeScript backend
+├── server/                         # Node.js + Express + TypeScript backend
 │   ├── src/
-│   │   ├── controllers/        # Route controllers (Auth, Schedules, Handover, etc.)
-│   │   ├── middleware/         # JWT auth, role authorization, file uploads
-│   │   ├── routes/             # RESTful API route definitions
-│   │   ├── services/           # Business logic & MySQL transaction services
-│   │   └── utils/              # Date arithmetic, OTP hashing, PDF validators
-│   ├── tests/                  # Jest test suites (businessRules & api integration)
+│   │   ├── config/
+│   │   │   ├── db.ts               # MySQL connection pool configuration
+│   │   │   └── env.ts              # Environment variable loader
+│   │   ├── controllers/
+│   │   │   ├── auditController.ts         # Audit log endpoints
+│   │   │   ├── authController.ts          # Authentication & profile
+│   │   │   ├── courseController.ts         # Course catalogue management
+│   │   │   ├── dashboardController.ts     # Role dashboard data
+│   │   │   ├── documentController.ts      # Secure document access
+│   │   │   ├── emailController.ts         # Email notification management
+│   │   │   ├── examinerController.ts      # Examiner assignments & invitations
+│   │   │   ├── extensionController.ts     # Deadline extension requests
+│   │   │   ├── finalMarksheetController.ts  # Final marksheet approval flow
+│   │   │   ├── firstMarkingController.ts  # First marking & OTP logistics
+│   │   │   ├── roleManagementController.ts  # Role CRUD & approvals
+│   │   │   ├── scheduleController.ts      # Exam schedule lifecycle
+│   │   │   └── secondMarkingController.ts # Second marking & courier
+│   │   ├── middlewares/
+│   │   │   ├── auth.ts             # JWT authentication middleware
+│   │   │   ├── rbac.ts             # Role-based access control
+│   │   │   └── upload.ts           # PDF file upload handling (Multer)
+│   │   ├── routes/
+│   │   │   └── index.ts            # Centralized RESTful API route definitions
+│   │   ├── services/
+│   │   │   ├── auditService.ts          # Audit trail business logic
+│   │   │   ├── documentService.ts       # Document storage & signed URLs
+│   │   │   ├── emailService.ts          # SMTP email dispatch
+│   │   │   ├── examinerService.ts       # Examiner seniority & assignment logic
+│   │   │   ├── otpService.ts            # Cryptographic OTP generation & verification
+│   │   │   ├── scheduleRepository.ts    # Schedule CRUD & MySQL transactions
+│   │   │   └── workflowService.ts       # Multi-phase workflow state machine
+│   │   ├── types/
+│   │   │   ├── enums.ts            # Role names, statuses, phases
+│   │   │   └── express.d.ts        # Express type augmentations
+│   │   └── utils/
+│   │       ├── academicDesignations.ts  # Seniority rank definitions
+│   │       ├── dates.ts            # Calendar month deadline arithmetic
+│   │       ├── otp.ts              # OTP hashing utilities
+│   │       ├── professionalVectors.ts   # Avatar generation utilities
+│   │       └── storage.ts          # File system storage helpers
+│   ├── tests/
+│   │   ├── businessRules.test.ts   # Unit tests (seniority, deadlines, OTP)
+│   │   └── api.test.ts             # API integration tests
 │   └── package.json
 ├── database/
-│   └── exam_monitoring_db.sql  # Complete MySQL database schema + pre-seeded test data
-├── docs/                       # Academic documentation & diagrams
-│   ├── Final_Submission_System_Report.docx
+│   └── exam_monitoring_db.sql      # Complete MySQL schema + pre-seeded test data
+├── docs/                           # Academic documentation & diagrams
+│   ├── ER Diagram.png
 │   ├── RUSL_Exam_Monitoring_EER_Diagram.png
 │   ├── RUSL_Exam_Monitoring_Peter_Chen_ERD.png
 │   ├── RUSL_Exam_Monitoring_Relational_Schema.png
-│   └── COURSES_AND_LECTURER_IN_CHARGE_STUDENT_COPY.pdf
-├── uploads/                    # Secure local storage for uploaded marking reports & marksheet PDFs
+│   ├── COURSES_AND_LECTURER_IN_CHARGE_STUDENT_COPY.pdf
+│   ├── Final_Submission_System_Report.docx
+│   └── PXL_20260812_103530971.jpg
+├── uploads/                        # Secure local storage for uploaded marking reports & marksheet PDFs
+├── render.yaml                     # Render cloud deployment blueprint
 ├── .gitignore
-├── package.json                # Root automation scripts
+├── package.json                    # Root automation scripts (install, build, dev, test)
 └── README.md
 ```
 
 ---
 
+## ☁️ Cloud Deployment (Render)
+
+The project includes a `render.yaml` deployment blueprint for one-click deployment on [Render](https://render.com):
+
+```bash
+# Set the following environment variables on Render:
+NODE_ENV=production
+JWT_SECRET=<your-production-secret>
+DATABASE_URL=<your-cloud-mysql-connection-string>
+```
+
+The system supports cloud MySQL providers with SSL connections (TiDB, Aiven, Railway, PlanetScale).
+
+---
+
 ## 👥 Development Team & Attribution
 
-Developed with pride by **Syntax Squad** for the **Department of Computing, Faculty of Applied Sciences, Rajarata University of Sri Lanka (RUSL)**. All rights reserved.
+Developed with pride by **Syntax Squad** for the **Department of Computing, Faculty of Applied Sciences, Rajarata University of Sri Lanka (RUSL)**.
+
+---
+
+*Last updated: October 2026*
