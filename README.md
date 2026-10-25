@@ -16,7 +16,6 @@
 - **Authentication:** JWT-based with role-based access control (RBAC)
 - **Email Notifications:** Gmail SMTP integration with per-user configurable settings
 - **Storage:** Local encrypted file storage with SHA-256 integrity checks
-- **Deployment:** Render (via `render.yaml` blueprint)
 - **Testing:** Jest, Supertest (Unit & Integration test suites)
 
 ---
@@ -335,26 +334,10 @@ exam-results-monitoring-system/
 │   ├── Final_Submission_System_Report.docx
 │   └── PXL_20260812_103530971.jpg
 ├── uploads/                        # Secure local storage for uploaded marking reports & marksheet PDFs
-├── render.yaml                     # Render cloud deployment blueprint
 ├── .gitignore
 ├── package.json                    # Root automation scripts (install, build, dev, test)
 └── README.md
 ```
-
----
-
-## ☁️ Cloud Deployment (Render)
-
-The project includes a `render.yaml` deployment blueprint for one-click deployment on [Render](https://render.com):
-
-```bash
-# Set the following environment variables on Render:
-NODE_ENV=production
-JWT_SECRET=<your-production-secret>
-DATABASE_URL=<your-cloud-mysql-connection-string>
-```
-
-The system supports cloud MySQL providers with SSL connections (TiDB, Aiven, Railway, PlanetScale).
 
 ---
 

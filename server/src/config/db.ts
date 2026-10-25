@@ -6,22 +6,8 @@ import { ENV } from './env';
  * Supports standard format: mysql://user:password@host:port/database
  */
 function getDatabaseConfig() {
-  if (process.env.MYSQLHOST) {
-    return {
-      host: process.env.MYSQLHOST,
-      port: parseInt(process.env.MYSQLPORT || '3306', 10),
-      user: process.env.MYSQLUSER || 'root',
-      password: process.env.MYSQLPASSWORD || '',
-      database: process.env.MYSQLDATABASE || 'railway',
-      ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
-    };
-  }
-
   try {
     const parsed = new URL(ENV.DATABASE_URL);
-    const sslParam = parsed.searchParams.get('ssl');
-    const sslMode = parsed.searchParams.get('ssl-mode');
-    const useSsl = sslParam === 'true' || sslMode === 'REQUIRED' || process.env.DB_SSL === 'true';
 
     return {
       host: parsed.hostname || '127.0.0.1',
@@ -29,7 +15,6 @@ function getDatabaseConfig() {
       user: decodeURIComponent(parsed.username || 'root'),
       password: decodeURIComponent(parsed.password || ''),
       database: parsed.pathname.replace(/^\//, '') || 'exam_monitoring_db',
-      ssl: useSsl ? { rejectUnauthorized: false } : undefined,
     };
   } catch {
     return {
@@ -38,7 +23,6 @@ function getDatabaseConfig() {
       user: 'root',
       password: '',
       database: 'exam_monitoring_db',
-      ssl: undefined,
     };
   }
 }
@@ -47,7 +31,7 @@ const config = getDatabaseConfig();
 
 /**
  * Shared MySQL Connection Pool
- * Configured with sane connection limits and keep-alive for local XAMPP / MariaDB or Cloud MySQL.
+ * Configured with sane connection limits and keep-alive for local XAMPP / MariaDB.
  */
 export const db: Pool = mysql.createPool({
   host: config.host,
@@ -55,7 +39,6 @@ export const db: Pool = mysql.createPool({
   user: config.user,
   password: config.password,
   database: config.database,
-  ssl: config.ssl,
   waitForConnections: true,
   connectionLimit: 15,
   queueLimit: 0,
