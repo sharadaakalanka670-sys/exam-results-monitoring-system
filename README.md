@@ -130,16 +130,45 @@ Open **[http://localhost:5173](http://localhost:5173)** in your browser.
 
 All test accounts share the same default password: **`Password@123`**
 
-| Role / Perspective | Username | Staff Member | Seniority Rank / Designation | Access & Responsibilities |
+### Core Role Accounts
+
+| Role / Perspective | Username | Staff Member | Designation | Seniority Rank | Access & Responsibilities |
+|---|---|---|---|---|---|
+| **Head of Department (HOD)** | `hod` | Dr. Kasun Bandara | Senior Lecturer Gr. I & Head of Dept | Rank 10 | Assign First/Second examiners, enforce seniority bylaws, approve schedules, grant final approvals |
+| **First Examiner / Lecturer** | `charith` | Dr. Charith Jayasundara | Senior Lecturer Gr. I | Rank 6 | Request script collection OTP, submit 1st marking reports, compile final marks |
+| **Lecturer (Junior)** | `palliya` | Mr. Tharindu Wickramasinghe | Lecturer (Probationary) | Rank 4 | First examiner (cannot examine senior lecturers' courses) |
+| **Second Examiner (Internal)** | `hettige` | Dr. Priyantha Dissanayake | Senior Lecturer Gr. II | Rank 5 | Second examiner for internal courses, submit 2nd marking report |
+| **Second Examiner (External)** | `gunathilake` | Prof. Nihal Senanayake | Professor of Computer Science | Rank 12 | External expert examiner (University of Peradeniya) |
+| **Examination Branch (AR)** | `ar` | Mr. Kamal Rathnayake | Assistant Registrar (Examinations) | — | Verify script collection/return OTPs, dispatch couriers, track tracking numbers |
+| **Department Clerk** | `clerk` | Ms. Niluka Jayawardena | Senior Management Assistant | — | View schedules, enter course records, assist administrative workflows |
+| **Faculty Dean** | `dean` | Prof. Sunanda Wijeratne | Dean / Faculty of Applied Sciences | — | High-level audit and faculty-wide examination monitoring |
+
+### Additional Lecturer & Examiner Accounts
+
+| Username | Staff Member | Designation | Seniority Rank | Type |
 |---|---|---|---|---|
-| **Head of Department (HOD)** | `hod` | Dr. K. A. S. H. Kulathilake | Rank 10 (Head of Dept) | Assign First/Second examiners, enforce seniority bylaws, approve schedules, grant final approvals |
-| **First Examiner / Lecturer** | `charith` | Dr. Charith Jayasundara | Rank 6 (Senior Lecturer Gr. II) | Request script collection OTP, submit 1st marking reports, compile final marks |
-| **Lecturer (Junior)** | `palliya` | Mr. K. T. S. Palliyaguruge | Rank 4 (Lecturer) | First examiner (cannot examine senior lecturers' courses) |
-| **Second Examiner (Internal)** | `hettige` | Dr. S. Hettige | Rank 9 (Senior Lecturer Gr. I) | Second examiner for senior courses, submit 2nd marking report |
-| **Second Examiner (External)** | `gunathilake` | Prof. Jagath K. Gunathilake | Rank 12 (Chair Professor) | External expert examiner for professorial level courses |
-| **Examination Branch (AR)** | `ar` | Senior Asst. Registrar | Examination Branch | Verify script collection/return OTPs, dispatch couriers, track tracking numbers |
-| **Department Clerk** | `clerk` | Office Clerk | HOD Office | View schedules, enter course records, assist administrative workflows |
-| **Faculty Dean** | `dean` | Prof. Faculty Dean | Dean's Office | High-level audit and faculty-wide examination monitoring |
+| `skumara` | Dr. Saman Kumara | Senior Lecturer Gr. II | Rank 5 | Internal |
+| `dperera` | Mrs. Dilani Perera | Lecturer (Probationary) | Rank 2 | Internal |
+| `mfernando` | Dr. Malith Fernando | Senior Lecturer Gr. I | Rank 7 | Internal |
+| `aweerasinghe` | Dr. Anura Weerasinghe | Senior Lecturer Gr. I | Rank 8 | Internal |
+| `ngunasekara` | Dr. Nuwan Gunasekara | Senior Lecturer Gr. II | Rank 6 | Internal |
+| `crathnayake` | Dr. Chaminda Rathnayake | Senior Lecturer Gr. II | Rank 6 | Internal |
+| `kmendis` | Dr. Kusal Mendis | Senior Lecturer Gr. I | Rank 7 | Internal |
+| `tsilva` | Dr. Thilina Silva | Senior Lecturer Gr. II | Rank 5 | Internal |
+| `jranasinghe` | Dr. Janaka Ranasinghe | Senior Lecturer Gr. I | Rank 7 | Internal |
+| `galahakoon` | Prof. Gamini Alahakoon | Senior Professor | Rank 12 | External |
+| `sabeywickrama` | Dr. Suresh Abeywickrama | Senior Lecturer Gr. I | Rank 8 | External |
+| `iherath` | Dr. Indika Herath | Senior Lecturer Gr. I | Rank 7 | Internal |
+| `mkarunaratne` | Dr. Manoja Karunaratne | Senior Lecturer Gr. II | Rank 6 | Internal |
+| `swickramasinghe` | Dr. Sajith Wickramasinghe | Senior Lecturer Gr. II | Rank 5 | Internal |
+| `hlakmali` | Mrs. Heshani Lakmali | Lecturer (Probationary) | Rank 2 | Internal |
+| `pwijesinghe` | Dr. Prasanna Wijesinghe | Senior Lecturer Gr. I | Rank 9 | External |
+| `csamarasinghe` | Dr. Chathura Samarasinghe | Senior Lecturer Gr. II | Rank 6 | Internal |
+| `nkodagoda` | Prof. Nimal Kodagoda | Professor of Software Engineering | Rank 11 | External |
+| `asupun` | Mr. Supun Amarasinghe | Lecturer (Probationary) | Rank 3 | Internal |
+| `vabeywardena` | Dr. Vathsala Abeywardena | Senior Lecturer Gr. I | Rank 8 | Internal |
+
+> **Note:** All 28 accounts use the same password `Password@123`. Additional lecturer accounts hold `LECTURER` and/or `SECOND_EXAMINER` roles and can be used to test seniority validation rules with different rank combinations.
 
 ---
 
