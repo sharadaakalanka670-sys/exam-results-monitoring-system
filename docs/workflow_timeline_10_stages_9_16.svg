@@ -1,0 +1,292 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920" style="background:#090d16; font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;">
+  <defs>
+    <!-- Background Gradients -->
+    <radialGradient id="bgGlow" cx="50%" cy="25%" r="70%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#090d16" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="accentGlow" cx="50%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="#1e3a8a" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#090d16" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Linear Gradients -->
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="50%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="25%" stop-color="#06b6d4"/>
+      <stop offset="50%" stop-color="#10b981"/>
+      <stop offset="75%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <!-- Active & Locked Gradients -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+
+    <!-- Filters & Shadows -->
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+    <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1920" fill="url(#bgGlow)"/>
+  <rect width="1080" height="1920" fill="url(#accentGlow)"/>
+
+  <!-- Decorative subtle tech grid lines -->
+  <g opacity="0.05" stroke="#ffffff" stroke-width="1">
+    <line x1="80" y1="0" x2="80" y2="1920"/>
+    <line x1="1000" y1="0" x2="1000" y2="1920"/>
+    <line x1="0" y1="200" x2="1080" y2="200"/>
+    <line x1="0" y1="1820" x2="1080" y2="1820"/>
+  </g>
+
+  <!-- ================= HEADER SECTION ================= -->
+  <g transform="translate(80, 50)">
+    <!-- Pill Badge -->
+    <rect x="0" y="0" width="310" height="34" rx="17" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <circle cx="18" cy="17" r="6" fill="#10b981" filter="url(#glowEffect)"/>
+    <text x="36" y="22" font-size="13" font-weight="700" fill="#94a3b8" letter-spacing="1.5">FACULTY OF APPLIED SCIENCES</text>
+
+    <!-- Main Title -->
+    <text x="0" y="80" font-size="34" font-weight="900" fill="#ffffff" letter-spacing="0.5">EXAMINATION WORKFLOW TIMELINE</text>
+    <text x="0" y="116" font-size="20" font-weight="700" fill="url(#headerGrad)" letter-spacing="2">10-STAGE AUTOMATED STATE MACHINE</text>
+    <text x="0" y="142" font-size="14" font-weight="500" fill="#64748b">Department of Computing • Rajarata University of Sri Lanka (RUSL)</text>
+  </g>
+
+  <!-- Central Connecting Spine Line -->
+  <line x1="150" y1="230" x2="150" y2="1780" stroke="url(#lineGrad)" stroke-width="6" stroke-linecap="round" filter="url(#glowEffect)"/>
+  <line x1="150" y1="230" x2="150" y2="1780" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ================= 10 STAGES (VERTICAL LAYOUT) ================= -->
+
+  <!-- STAGE 1: DRAFT -->
+  <g transform="translate(150, 240)">
+    <!-- Node Circle -->
+    <circle cx="0" cy="55" r="24" fill="#0f172a" stroke="#3b82f6" stroke-width="4" filter="url(#glowEffect)"/>
+    <text x="0" y="61" text-anchor="middle" font-size="14" font-weight="800" fill="#60a5fa">01</text>
+    
+    <!-- Connector Horizontal -->
+    <line x1="24" y1="55" x2="60" y2="55" stroke="#3b82f6" stroke-width="2"/>
+
+    <!-- Content Card -->
+    <g transform="translate(60, 0)" filter="url(#cardShadow)">
+      <rect width="780" height="110" rx="14" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+      <rect x="0" y="0" width="8" height="110" rx="4" fill="#3b82f6"/>
+      
+      <text x="30" y="38" font-size="20" font-weight="800" fill="#ffffff">DRAFT</text>
+      <rect x="110" y="21" width="165" height="24" rx="12" fill="#1e3a8a" stroke="#2563eb" stroke-width="1"/>
+      <text x="192" y="37" text-anchor="middle" font-size="11" font-weight="700" fill="#93c5fd">CLERK / HOD OFFICE</text>
+      
+      <text x="30" y="72" font-size="14" font-weight="500" fill="#cbd5e1">Draft schedule initialized with course code, academic semester &amp; batch.</text>
+      <text x="30" y="93" font-size="12" font-weight="600" fill="#38bdf8">Key Event: Awaiting preliminary schedule planning &amp; examiner allocations</text>
+    </g>
+  </g>
+
+  <!-- STAGE 2: SCHEDULED -->
+  <g transform="translate(150, 395)">
+    <circle cx="0" cy="55" r="24" fill="#0f172a" stroke="#0284c7" stroke-width="4" filter="url(#glowEffect)"/>
+    <text x="0" y="61" text-anchor="middle" font-size="14" font-weight="800" fill="#38bdf8">02</text>
+    <line x1="24" y1="55" x2="60" y2="55" stroke="#0284c7" stroke-width="2"/>
+
+    <g transform="translate(60, 0)" filter="url(#cardShadow)">
+      <rect width="780" height="110" rx="14" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+      <rect x="0" y="0" width="8" height="110" rx="4" fill="#0284c7"/>
+      
+      <text x="30" y="38" font-size="20" font-weight="800" fill="#ffffff">SCHEDULED</text>
+      <rect x="180" y="21" width="225" height="24" rx="12" fill="#0369a1" stroke="#38bdf8" stroke-width="1"/>
+      <text x="292" y="37" text-anchor="middle" font-size="11" font-weight="700" fill="#bae6fd">SENIORITY BYLAW VERIFIED</text>
+      
+      <text x="30" y="72" font-size="14" font-weight="500" fill="#cbd5e1">1st &amp; 2nd Examiners assigned. System strictly checks: 2nd Examiner ≥ 1st Examiner Rank.</text>
+      <text x="30" y="93" font-size="12" font-weight="600" fill="#38bdf8">Key Event: Schedule activated by HOD • Official exam date allocated</text>
+    </g>
+  </g>
+
+  <!-- STAGE 3: EXAM_CONCLUDED -->
+  <g transform="translate(150, 550)">
+    <circle cx="0" cy="55" r="24" fill="#0f172a" stroke="#06b6d4" stroke-width="4" filter="url(#glowEffect)"/>
+    <text x="0" y="61" text-anchor="middle" font-size="14" font-weight="800" fill="#22d3ee">03</text>
+    <line x1="24" y1="55" x2="60" y2="55" stroke="#06b6d4" stroke-width="2"/>
+
+    <g transform="translate(60, 0)" filter="url(#cardShadow)">
+      <rect width="780" height="110" rx="14" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+      <rect x="0" y="0" width="8" height="110" rx="4" fill="#06b6d4"/>
+      
+      <text x="30" y="38" font-size="20" font-weight="800" fill="#ffffff">EXAM_CONCLUDED</text>
+      <rect x="250" y="21" width="180" height="24" rx="12" fill="#155e75" stroke="#22d3ee" stroke-width="1"/>
+      <text x="340" y="37" text-anchor="middle" font-size="11" font-weight="700" fill="#cffafe">AR OFFICE VAULT DEPOSIT</text>
+      
+      <text x="30" y="72" font-size="14" font-weight="500" fill="#cbd5e1">Written exam ends. Physical answer scripts counted, sealed &amp; deposited in AR vault.</text>
+      <text x="30" y="93" font-size="12" font-weight="600" fill="#22d3ee">Key Event: Physical script bundle securely stored awaiting examiner collection</text>
+    </g>
+  </g>
+
+  <!-- STAGE 4: FIRST_COLLECTION_REQUESTED -->
+  <g transform="translate(150, 705)">
+    <circle cx="0" cy="55" r="24" fill="#0f172a" stroke="#0d9488" stroke-width="4" filter="url(#glowEffect)"/>
+    <text x="0" y="61" text-anchor="middle" font-size="14" font-weight="800" fill="#2dd4bf">04</text>
+    <line x1="24" y1="55" x2="60" y2="55" stroke="#0d9488" stroke-width="2"/>
+
+    <g transform="translate(60, 0)" filter="url(#cardShadow)">
+      <rect width="780" height="110" rx="14" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+      <rect x="0" y="0" width="8" height="110" rx="4" fill="#0d9488"/>
+      
+      <text x="30" y="38" font-size="20" font-weight="800" fill="#ffffff">FIRST_COLLECTION_REQUESTED</text>
+      <rect x="370" y="21" width="190" height="24" rx="12" fill="#134e4a" stroke="#2dd4bf" stroke-width="1"/>
+      <text x="465" y="37" text-anchor="middle" font-size="11" font-weight="700" fill="#99f6e4">6-DIGIT OTP DISPATCH</text>
+      
+      <text x="30" y="72" font-size="14" font-weight="500" fill="#cbd5e1">1st Examiner requests collection OTP. 6-digit cryptographic OTP generated (10-min expiry).</text>
+      <text x="30" y="93" font-size="12" font-weight="600" fill="#2dd4bf">Key Event: Examiner presents OTP in person to AR at examination vault</text>
+    </g>
+  </g>
+
+  <!-- STAGE 5: FIRST_MARKING_ACTIVE -->
+  <g transform="translate(150, 860)">
+    <circle cx="0" cy="55" r="24" fill="#0f172a" stroke="#10b981" stroke-width="4" filter="url(#glowEffect)"/>
+    <text x="0" y="61" text-anchor="middle" font-size="14" font-weight="800" fill="#34d399">05</text>
+    <line x1="24" y1="55" x2="60" y2="55" stroke="#10b981" stroke-width="2"/>
+
+    <g transform="translate(60, 0)" filter="url(#cardShadow)">
+      <rect width="780" height="110" rx="14" fill="url(#cardGrad)" stroke="#10b981" stroke-width="1.6"/>
+      <rect x="0" y="0" width="8" height="110" rx="4" fill="#10b981"/>
+      
+      <text x="30" y="38" font-size="20" font-weight="800" fill="#ffffff">FIRST_MARKING_ACTIVE</text>
+      <rect x="290" y="21" width="230" height="24" rx="12" fill="#064e3b" stroke="#34d399" stroke-width="1"/>
+      <text x="405" y="37" text-anchor="middle" font-size="11" font-weight="700" fill="#6ee7b7">3-CALENDAR-MONTH TIMER</text>
+      
+      <text x="30" y="72" font-size="14" font-weight="500" fill="#cbd5e1">AR verifies OTP in terminal $\rightarrow$ Custody transferred. 3-month countdown strictly begins.</text>
+      <text x="30" y="93" font-size="12" font-weight="600" fill="#34d399">Key Event: Active marking in progress • Deadline extensions require HOD approval</text>
+    </g>
+  </g>
+
+  <!-- STAGE 6: SECOND_MARKING_READY -->
+  <g transform="translate(150, 1015)">
+    <circle cx="0" cy="55" r="24" fill="#0f172a" stroke="#84cc16" stroke-width="4" filter="url(#glowEffect)"/>
+    <text x="0" y="61" text-anchor="middle" font-size="14" font-weight="800" fill="#a3e635">06</text>
+    <line x1="24" y1="55" x2="60" y2="55" stroke="#84cc16" stroke-width="2"/>
+
+    <g transform="translate(60, 0)" filter="url(#cardShadow)">
+      <rect width="780" height="110" rx="14" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+      <rect x="0" y="0" width="8" height="110" rx="4" fill="#84cc16"/>
+      
+      <text x="30" y="38" font-size="20" font-weight="800" fill="#ffffff">SECOND_MARKING_READY</text>
+      <rect x="300" y="21" width="195" height="24" rx="12" fill="#365314" stroke="#a3e635" stroke-width="1"/>
+      <text x="397" y="37" text-anchor="middle" font-size="11" font-weight="700" fill="#d9f99d">1ST REPORT UPLOADED</text>
+      
+      <text x="30" y="72" font-size="14" font-weight="500" fill="#cbd5e1">1st Marking Report PDF uploaded. Scripts returned to AR vault via verified Return OTP.</text>
+      <text x="30" y="93" font-size="12" font-weight="600" fill="#a3e635">Key Event: Scripts ready for courier dispatch to Second Examiner</text>
+    </g>
+  </g>
+
+  <!-- STAGE 7: SECOND_MARKING_ACTIVE -->
+  <g transform="translate(150, 1170)">
+    <circle cx="0" cy="55" r="24" fill="#0f172a" stroke="#eab308" stroke-width="4" filter="url(#glowEffect)"/>
+    <text x="0" y="61" text-anchor="middle" font-size="14" font-weight="800" fill="#facc15">07</text>
+    <line x1="24" y1="55" x2="60" y2="55" stroke="#eab308" stroke-width="2"/>
+
+    <g transform="translate(60, 0)" filter="url(#cardShadow)">
+      <rect width="780" height="110" rx="14" fill="url(#cardGrad)" stroke="#eab308" stroke-width="1.4"/>
+      <rect x="0" y="0" width="8" height="110" rx="4" fill="#eab308"/>
+      
+      <text x="30" y="38" font-size="20" font-weight="800" fill="#ffffff">SECOND_MARKING_ACTIVE</text>
+      <rect x="315" y="21" width="220" height="24" rx="12" fill="#713f12" stroke="#fde047" stroke-width="1"/>
+      <text x="425" y="37" text-anchor="middle" font-size="11" font-weight="700" fill="#fef08a">COURIER DISPATCH TRACKED</text>
+      
+      <text x="30" y="72" font-size="14" font-weight="500" fill="#cbd5e1">AR dispatches via Certis Lanka / Prompt Xpress. 2nd Examiner acknowledges receipt.</text>
+      <text x="30" y="93" font-size="12" font-weight="600" fill="#facc15">Key Event: 1-Calendar-Month evaluation countdown starts from dispatch</text>
+    </g>
+  </g>
+
+  <!-- STAGE 8: SECOND_MARKING_COMPLETE -->
+  <g transform="translate(150, 1325)">
+    <circle cx="0" cy="55" r="24" fill="#0f172a" stroke="#f97316" stroke-width="4" filter="url(#glowEffect)"/>
+    <text x="0" y="61" text-anchor="middle" font-size="14" font-weight="800" fill="#fb923c">08</text>
+    <line x1="24" y1="55" x2="60" y2="55" stroke="#f97316" stroke-width="2"/>
+
+    <g transform="translate(60, 0)" filter="url(#cardShadow)">
+      <rect width="780" height="110" rx="14" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+      <rect x="0" y="0" width="8" height="110" rx="4" fill="#f97316"/>
+      
+      <text x="30" y="38" font-size="20" font-weight="800" fill="#ffffff">SECOND_MARKING_COMPLETE</text>
+      <rect x="350" y="21" width="190" height="24" rx="12" fill="#7c2d12" stroke="#fdba74" stroke-width="1"/>
+      <text x="445" y="37" text-anchor="middle" font-size="11" font-weight="700" fill="#ffedd5">AR PHYSICAL RETURN</text>
+      
+      <text x="30" y="72" font-size="14" font-weight="500" fill="#cbd5e1">2nd Marking Report uploaded. AR confirms physical script return to university vault.</text>
+      <text x="30" y="93" font-size="12" font-weight="600" fill="#fb923c">Key Event: 1st Examiner can now compile final results &amp; marksheet</text>
+    </g>
+  </g>
+
+  <!-- STAGE 9: FINAL_MARKSHEET_SUBMITTED -->
+  <g transform="translate(150, 1480)">
+    <circle cx="0" cy="55" r="24" fill="#0f172a" stroke="#8b5cf6" stroke-width="4" filter="url(#glowEffect)"/>
+    <text x="0" y="61" text-anchor="middle" font-size="14" font-weight="800" fill="#a78bfa">09</text>
+    <line x1="24" y1="55" x2="60" y2="55" stroke="#8b5cf6" stroke-width="2"/>
+
+    <g transform="translate(60, 0)" filter="url(#cardShadow)">
+      <rect width="780" height="110" rx="14" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+      <rect x="0" y="0" width="8" height="110" rx="4" fill="#8b5cf6"/>
+      
+      <text x="30" y="38" font-size="20" font-weight="800" fill="#ffffff">FINAL_MARKSHEET_SUBMITTED</text>
+      <rect x="360" y="21" width="175" height="24" rx="12" fill="#4c1d95" stroke="#c4b5fd" stroke-width="1"/>
+      <text x="447" y="37" text-anchor="middle" font-size="11" font-weight="700" fill="#ede9fe">HOD INBOX REVIEW</text>
+      
+      <text x="30" y="72" font-size="14" font-weight="500" fill="#cbd5e1">1st Examiner uploads compiled final marksheet PDF and officially submits to HOD.</text>
+      <text x="30" y="93" font-size="12" font-weight="600" fill="#a78bfa">Key Event: HOD can either 'Request Changes' or 'Approve &amp; Lock'</text>
+    </g>
+  </g>
+
+  <!-- STAGE 10: APPROVED_LOCKED -->
+  <g transform="translate(150, 1635)">
+    <!-- Terminal Glowing Circle -->
+    <circle cx="0" cy="55" r="28" fill="#10b981" stroke="#ffffff" stroke-width="4" filter="url(#glowEffect)"/>
+    <!-- Checkmark SVG icon -->
+    <path d="M-10 55 L-3 62 L11 46" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="28" y1="55" x2="60" y2="55" stroke="#10b981" stroke-width="3"/>
+
+    <g transform="translate(60, 0)" filter="url(#cardShadow)">
+      <rect width="780" height="115" rx="14" fill="url(#cardGrad)" stroke="#10b981" stroke-width="2.5"/>
+      <rect x="0" y="0" width="12" height="115" rx="6" fill="#10b981"/>
+      
+      <text x="30" y="38" font-size="22" font-weight="900" fill="#34d399">APPROVED_LOCKED</text>
+      <rect x="290" y="18" width="235" height="26" rx="13" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+      <text x="407" y="35" text-anchor="middle" font-size="12" font-weight="800" fill="#a7f3d0">PERMANENT AUDIT LOCK</text>
+      
+      <text x="30" y="73" font-size="14" font-weight="600" fill="#f8fafc">HOD grants final approval. Workflow becomes strictly read-only and immutable.</text>
+      <text x="30" y="96" font-size="13" font-weight="700" fill="#10b981">Official Results Released • Permanent audit log committed to database</text>
+    </g>
+  </g>
+
+  <!-- ================= FOOTER BRANDING ================= -->
+  <g transform="translate(80, 1855)">
+    <line x1="0" y1="0" x2="920" y2="0" stroke="#334155" stroke-width="1"/>
+    <text x="0" y="32" font-size="14" font-weight="700" fill="#94a3b8">DEVELOPED BY TEAM SYNTAX SQUAD</text>
+    <text x="920" y="32" text-anchor="end" font-size="13" font-weight="500" fill="#64748b">RUSL Exam Results Monitoring System • Aspect Ratio 9:16 (1080 × 1920)</text>
+  </g>
+</svg>
